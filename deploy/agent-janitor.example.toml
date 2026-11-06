@@ -1,0 +1,7 @@
+[janitor]
+roots = ["/srv/ci/workspace"]
+max_age_days = 3
+min_free_percent = 20
+keep_patterns = ["*@tmp", "*@libs"]
+lock_file_name = ".janitor-keep"
+metrics_file = "/var/lib/node_exporter/textfile/agent_janitor.prom"

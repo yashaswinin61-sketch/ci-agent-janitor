@@ -1,0 +1,7 @@
+groups:
+  - name: agent-janitor.recording
+    rules:
+      - record: pool:agent_janitor_bytes_reclaimed:sum
+        expr: sum by (pool) (agent_janitor_bytes_reclaimed{dry_run="false"})
+      - record: pool:agent_janitor_free_percent_after:min
+        expr: min by (pool) (agent_janitor_free_percent_after{dry_run="false"})

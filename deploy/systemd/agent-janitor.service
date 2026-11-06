@@ -1,0 +1,14 @@
+[Unit]
+Description=Reclaim disk on CI build agent
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/agent-janitor -c /etc/agent-janitor.toml --json
+Nice=10
+IOSchedulingClass=idle
+# Hardening: it only needs write access to the workspace roots and textfile dir
+ProtectSystem=strict
+ReadWritePaths=/srv/ci /var/lib/node_exporter/textfile
+PrivateTmp=true
+NoNewPrivileges=true
